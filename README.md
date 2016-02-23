@@ -1,0 +1,3 @@
+# Notes
+
+Tricks and surprise
