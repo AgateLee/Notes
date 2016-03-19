@@ -7,41 +7,42 @@ typedef struct node
 {
 	int r;
 	int c;
-	int layer;
 } Node;
 
 queue<Node *> que;
 int maxd = 0, maxc = 0, maxr = 0;
 int labyrinth[maxn][maxn] = {0};
 int dis[maxn][maxn] = {0};
-int m, n;	
+int m, n;
 
-void trypush(int r, int c, int layer)
+int trypush(int r, int c)
 {
 	if(r < 0 || r >= m || c < 0 || c >= n || dis[r][c] != -1)
 	{
-		return;
+		return 0;
 	}
 	else
 	{
 		Node * t = new Node;
 		t->r = r;
 		t->c = c;
-		t->layer = layer;
 		que.push(t);
+
+		return 1;
 	}
 }
 
-void bfs()
+void bfs(int cur, int next, int layer)
 {
 	if(que.size() == 0)
 		return;
 
 	Node * temp = que.front();
 	que.pop();
+	cur -= 1;
+
 	int r = temp->r;
 	int c = temp->c;
-	int layer = temp->layer;
 	free(temp);
 
 	if(layer > maxd)
@@ -52,14 +53,20 @@ void bfs()
 	}
 
 	if(dis[r][c] == -1) dis[r][c] = layer;
-	layer += 1;
 
-	trypush(r + 1, c, layer);
-	trypush(r, c + 1, layer);
-	trypush(r - 1, c, layer);
-	trypush(r, c - 1, layer);
+	next += trypush(r + 1, c);
+	next += trypush(r, c + 1);
+	next += trypush(r - 1, c);
+	next += trypush(r, c - 1);
 
-	bfs();
+	if(cur == 0)
+	{
+		cur = next;
+		next = 0;
+		layer += 1;
+	}
+
+	bfs(cur, next, layer);
 }
 
 int main()
@@ -79,10 +86,10 @@ int main()
 	Node * st = new Node;
 	st->r = 0;
 	st->c = 0;
-	st->layer = 0;
 
 	que.push(st);
-	bfs();
+
+	bfs(1, 0, 0);
 
 	for(int i = 0; i < m; i++)
 	{
