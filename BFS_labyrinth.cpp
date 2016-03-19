@@ -20,7 +20,6 @@ void trypush(int r, int c, int layer)
 {
 	if(r < 0 || r >= m || c < 0 || c >= n || dis[r][c] != -1)
 	{
-		// printf("jump %d %d : %d\n", r1, c1, layer);
 		return;
 	}
 	else
@@ -30,7 +29,6 @@ void trypush(int r, int c, int layer)
 		t->c = c;
 		t->layer = layer;
 		que.push(t);
-		// printf("push %d %d : %d\n", r, c, layer);
 	}
 }
 
@@ -45,7 +43,6 @@ void bfs()
 	int c = temp->c;
 	int layer = temp->layer;
 	free(temp);
-	// printf("pop %d %d : %d\n", r, c, layer);
 
 	if(layer > maxd)
 	{
@@ -62,7 +59,6 @@ void bfs()
 	trypush(r - 1, c, layer);
 	trypush(r, c - 1, layer);
 
-	// getchar();
 	bfs();
 }
 
