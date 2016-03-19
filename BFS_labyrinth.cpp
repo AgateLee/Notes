@@ -34,39 +34,37 @@ int trypush(int r, int c)
 
 void bfs(int cur, int next, int layer)
 {
-	if(que.size() == 0)
-		return;
-
-	Node * temp = que.front();
-	que.pop();
-	cur -= 1;
-
-	int r = temp->r;
-	int c = temp->c;
-	free(temp);
-
-	if(layer > maxd)
+	while(que.size() != 0)
 	{
-		maxd = layer;
-		maxc = c;
-		maxr = r;
+		Node * temp = que.front();
+		que.pop();
+		cur -= 1;
+
+		int r = temp->r;
+		int c = temp->c;
+		free(temp);
+
+		if(layer > maxd)
+		{
+			maxd = layer;
+			maxc = c;
+			maxr = r;
+		}
+
+		if(dis[r][c] == -1) dis[r][c] = layer;
+
+		next += trypush(r + 1, c);
+		next += trypush(r, c + 1);
+		next += trypush(r - 1, c);
+		next += trypush(r, c - 1);
+
+		if(cur == 0)
+		{
+			cur = next;
+			next = 0;
+			layer += 1;
+		}
 	}
-
-	if(dis[r][c] == -1) dis[r][c] = layer;
-
-	next += trypush(r + 1, c);
-	next += trypush(r, c + 1);
-	next += trypush(r - 1, c);
-	next += trypush(r, c - 1);
-
-	if(cur == 0)
-	{
-		cur = next;
-		next = 0;
-		layer += 1;
-	}
-
-	bfs(cur, next, layer);
 }
 
 int main()
