@@ -17,7 +17,7 @@ typedef struct node{
 } node;
 
 node T[MAXN];
-int stack[MAXN], p[MAXN], top;
+int stack[MAXN], top;
 
 int create(int n)
 {
