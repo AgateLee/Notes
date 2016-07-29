@@ -21,7 +21,7 @@ int Sunday()
 
     i = j = sum = 0;
 
-    while(i < len)
+    while(i < len - len0)
     {
         if(T[i] == P[j])
         {
