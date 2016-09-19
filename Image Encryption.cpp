@@ -207,8 +207,8 @@ void dfs(matrix & cur, int n)
 	}
 }
 
- int main()
- {
+int main()
+{
  	int n, ca;
  	freopen("input.txt", "r", stdin);
  	scanf("%d", &ca);
@@ -247,4 +247,4 @@ void dfs(matrix & cur, int n)
  	}
 
  	return 0;
- }
+}
