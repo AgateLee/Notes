@@ -19,7 +19,7 @@ typedef struct node{
 		return x * B.x + y * B.y + z * B.z;
 	}
 
-	node cross(const node & B) const
+	node det(const node & B) const
 	{
 		return node(y * B.z - z * B.y, z * B.x - x * B.z, x * B.y - y * B.x);
 	} 
@@ -31,8 +31,8 @@ bool oneSide(node P, node A, node B, node C)
 	node AC = C - A;
 	node AP = P - A;
 
-	node v1 = AB.cross(AC);
-	node v2 = AB.cross(AP);
+	node v1 = AB.det(AC);
+	node v2 = AB.det(AP);
 
 	if(v1.dot(v2) >= 0)
 		return true;
