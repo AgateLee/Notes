@@ -46,7 +46,7 @@ int cal(int n)
 	{
 		s = (k * (k + 1))>>1;
 
-		// cout << k << " " << s << endl;
+		cout << k << " " << s << endl;
 		if(s + k + 1 <= n && s + (k<<1) + 3 >= n)
 			break;
 		else if(s + k + 1 > n)
@@ -66,7 +66,7 @@ int main()
 {
 	int n;
 
-	// init();
+	init();
 
 	while(scanf("%d", &n) != EOF)
 	{
